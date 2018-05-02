@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Course-CS-game</string>
+    <string name="button_card_game">Найди пару</string>
+    <string name="but_pacman">Сдай сессию</string>
+    <string name="pacman_start">Начать игру</string>
+    <string name="pacman_settings">Настройки</string>
+    <string name="pacman_exit">Назад</string>
+    <string name="card_game_start">Начать игру</string>
+    <string name="card_game_settings">Настройки</string>
+    <string name="card_game_exit">Назад</string>
 </resources>
