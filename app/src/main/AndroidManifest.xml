@@ -18,6 +18,24 @@
 
             </intent-filter>
         </activity>
+        <activity android:name=".MenuCards"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".GameCards"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".SettingsCards"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".MenuPacman"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".GamePacman"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".SettingsPacman"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>
