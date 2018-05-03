@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.content.Intent;
 
+import com.example.course_cs_game.CardGame.GameCards;
+
 public class MenuCards extends AppCompatActivity implements OnClickListener {
 
     Button start;

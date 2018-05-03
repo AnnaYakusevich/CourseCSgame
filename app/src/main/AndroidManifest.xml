@@ -21,7 +21,7 @@
         <activity android:name=".MenuCards"
             android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".GameCards"
+        <activity android:name=".CardGame.GameCards"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".SettingsCards"
