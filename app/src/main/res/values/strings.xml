@@ -11,4 +11,6 @@
     <string name="choose_front">Выбрать карты</string>
     <string name="Save">Готово</string>
     <string name="Save_cards">Сохранить</string>
+    <string name="base_settings">Базовые уровни сложности</string>
+    <string name="set_time">Время на решение(секунды): 30</string>
 </resources>

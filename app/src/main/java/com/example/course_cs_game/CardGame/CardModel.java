@@ -26,16 +26,17 @@ public class CardModel {
 
         // Randomly generate numOfCardPairs pairs of cards
         int i = 0;
+        int maxNumOfOneTypeCards = MenuCards.numOfCardPairs / MenuCards.numOfCardTypes;
+        if (MenuCards.numOfCardPairs % MenuCards.numOfCardTypes != 0) {
+            maxNumOfOneTypeCards++;
+        }
         while (i < MenuCards.numOfCardPairs) {
 
             int randomNumber = rand.nextInt(MenuCards.numOfCardTypes);
             if (MenuCards.enabledCards[randomNumber] == 0) continue;
             System.out.println("Log: Pairs of cards " + randomNumber);
+
             // Making sure that cards are different
-            int maxNumOfOneTypeCards = MenuCards.numOfCardPairs / 13;
-            if (MenuCards.numOfCardPairs % MenuCards.numOfCardTypes != 0) {
-                maxNumOfOneTypeCards++;
-            }
             if (numberOfCardsForEachType[randomNumber] < maxNumOfOneTypeCards) {
 
                 // First card object

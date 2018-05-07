@@ -27,10 +27,6 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
     private CountDownTimerPausable timer;
     TableLayout tableLayout;
 
-    private enum SoundEffect {
-        flip, shuffle, match, nomatch, won, lost
-    }
-
     // Overriding the reaction of Back button
     @Override
     public void onBackPressed() {
@@ -67,7 +63,6 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.card_game);
-        playSound(SoundEffect.shuffle);
 
         // Get generated cards
         arrayOfCards = model.getCards();
@@ -77,11 +72,12 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
 
         // Create timer and display it
         final TextView timeText = findViewById(R.id.time_remaining);
-        timer = new CountDownTimerPausable(MenuCards.timeForGame, 1000) {
+        int timeForGame = MenuCards.timeForGame;
+        timer = new CountDownTimerPausable(timeForGame, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timeRemaining = millisUntilFinished;
-                String time = "Time remaining: " + timeRemaining / 1000 + "" + timeRemaining % 1000 / 10 + " s";
+                String time = "Time remaining: " + timeRemaining / 1000 + "." + timeRemaining % 1000 / 10 + " s";
                 timeText.setText(time);
             }
 
@@ -228,12 +224,10 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
                 break;
         }
         arrayOfCards[i].setFlipped(true);
-        playSound(SoundEffect.flip);
     }
     private void flipBack(int i) {
         buttons[i].setBackgroundResource(MenuCards.backId);
         arrayOfCards[i].setFlipped(false);
-        playSound(SoundEffect.flip);
     }
     public void remove(int i) {
         buttons[i].setVisibility(View.INVISIBLE);
@@ -251,14 +245,12 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
             remove(firstFlipped);
             remove(second_flipped);
 
-            playSound(SoundEffect.match);
         }
         else {
 
             // Cards are different
             flipBack(firstFlipped);
             flipBack(second_flipped);
-            playSound(SoundEffect.nomatch);
         }
 
         // Check if all cards are matched
@@ -289,7 +281,6 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
 
             title = "Поздравляем!";
             message = "Вы выиграли!";
-            playSound(SoundEffect.won);
 
         }
         else {
@@ -299,7 +290,6 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
             }
             title = "Игра окончена!";
             message = "Вы проиграли!";
-            playSound(SoundEffect.lost);
         }
 
         // Show won/lost message
@@ -344,44 +334,6 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
         Intent intent = new Intent(this, GameCards.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-    }
-
-
-
-
-    // TODO: Check sounds when activity changes/stops/resumes/etc
-    // TODO: Change sounds
-    // Methods for sounds
-    public void playSound(SoundEffect effect) {
-
-        int sound_id;
-
-        switch (effect) {
-            case won:
-                sound_id = R.raw.lion_roar;
-                break;
-            case flip:
-                sound_id = R.raw.sparrow_mail;
-                break;
-            case lost:
-                sound_id = R.raw.lion_roar;
-                break;
-            case match:
-                sound_id = R.raw.short_kitten_meow;
-                break;
-            case nomatch:
-                sound_id = R.raw.short_kitten_meow;
-                break;
-            case shuffle:
-                sound_id = R.raw.sparrow_mail;
-                break;
-            default:
-                return;
-        }
-
-        //MediaPlayer ring = MediaPlayer.create(this, sound_id);
-        //ring.start();
-
     }
 
 }

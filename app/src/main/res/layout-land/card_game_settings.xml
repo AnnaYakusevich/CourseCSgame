@@ -48,6 +48,30 @@
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="156dp" />
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="@string/set_time"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp" />
+
+            <SeekBar
+                android:id="@+id/seekBar2"
+                style="@android:style/Widget.DeviceDefault.SeekBar"
+                android:layout_width="500dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/back"
+                android:max="64"
+                android:progress="2"
+                android:visibility="visible"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="156dp" />
+
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
@@ -69,9 +93,19 @@
                 tools:text="Выбрать карты" />
 
             <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/base_settings" />
+
+            <Button
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"

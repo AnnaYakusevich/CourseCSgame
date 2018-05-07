@@ -14,10 +14,13 @@ public class SetBack extends AppCompatActivity implements View.OnClickListener {
 
         ImageView iv1 = findViewById(R.id.imageViewBack1);
         ImageView iv2 = findViewById(R.id.imageViewBack2);
+        ImageView iv3 = findViewById(R.id.imageViewBack3);
+        ImageView iv4 = findViewById(R.id.imageViewBack4);
 
         iv1.setOnClickListener(this);
         iv2.setOnClickListener(this);
-
+        iv3.setOnClickListener(this);
+        iv4.setOnClickListener(this);
     }
 
     public void onClick(View v) {
@@ -28,6 +31,14 @@ public class SetBack extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.imageViewBack2:
                 MenuCards.backId = R.drawable.back2;
+                finish();
+                break;
+            case R.id.imageViewBack3:
+                MenuCards.backId = R.drawable.back3;
+                finish();
+                break;
+            case R.id.imageViewBack4:
+                MenuCards.backId = R.drawable.back4;
                 finish();
                 break;
         }

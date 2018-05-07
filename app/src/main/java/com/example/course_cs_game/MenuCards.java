@@ -15,8 +15,7 @@ public class MenuCards extends AppCompatActivity implements OnClickListener {
     public static int numOfCardPairs = 8;
     public static int numOfCardTypes = 13;
     public static int maxNumOfCardTypes = 13;
-    // TODO: Time depends on number of cards and level
-    public static int timeForGame = 25000;
+    public static int timeForGame = 100000;
     public static int[] enabledCards = new int[maxNumOfCardTypes];
     public static int backId = R.drawable.back;
 
