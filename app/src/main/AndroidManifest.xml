@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name=".MenuCards"
                   android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,22 +18,10 @@
 
             </intent-filter>
         </activity>
-        <activity android:name=".MenuCards"
-            android:screenOrientation="landscape">
-        </activity>
         <activity android:name=".CardGame.GameCards"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".SettingsCards"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".MenuPacman"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".GamePacman"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".SettingsPacman"
             android:screenOrientation="landscape">
         </activity>
     </application>

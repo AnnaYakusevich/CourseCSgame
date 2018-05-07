@@ -1,43 +1,71 @@
 package com.example.course_cs_game.CardGame;
 
+import com.example.course_cs_game.MenuCards;
+
 import java.util.Random;
 
 public class CardModel {
 
-    public int number_of_cards = 8;
-    public static Random rand = new Random();
+    private Random rand = new Random();
 
-    public Card[] getCards() {
+    // Prepare array for work
+    private int[] numberOfCardsForEachType = new int[MenuCards.numOfCardTypes];
+    private void makeArrayOfZeros() {
+        for(int j = 0; j < 13; j++) {
+            numberOfCardsForEachType[j] = 0;
+        }
+    }
 
-        // Declare the array for generated cards
-        Card[] generated_cards_array = new Card[2 * number_of_cards];
+    // The array for generated cards
+    private Card[] generatedCardsArray = new Card[2 * MenuCards.numOfCardPairs];
 
-        // Randomly generate pairs of cards
-        for (int i = 0; i < number_of_cards; i++) {
+    // Make and return an array of cards for game
+    protected Card[] getCards() {
 
-            // Get a random number
-            int random_number = rand.nextInt(13) + 1;
+        makeArrayOfZeros();
 
-            // Log the number
-            System.out.println(random_number);
+        // Randomly generate numOfCardPairs pairs of cards
+        int i = 0;
+        while (i < MenuCards.numOfCardPairs) {
 
-            // First card object
-            Card card_one = new Card();
-            card_one.image_name = "card" + random_number;
-            generated_cards_array[2*i] = card_one;
+            int randomNumber = rand.nextInt(13);
 
-            // Second card object
-            Card card_two = new Card();
-            card_one.image_name = "card" + random_number;
-            generated_cards_array[2*i + 1] = card_two;
+            // Making sure that cards are different
+            int maxNumOfOneTypeCards = MenuCards.numOfCardPairs / 13;
+            if (MenuCards.numOfCardPairs % 13 != 0) {
+                maxNumOfOneTypeCards++;
+            }
+            if (numberOfCardsForEachType[randomNumber] < maxNumOfOneTypeCards) {
 
-            // TODO: Make pairs of cards different
+                // First card object
+                Card card = new Card();
+                card.setImageNum(randomNumber + 1);
+                generatedCardsArray[2 * i] = card;
 
+                // Second card object
+                card = new Card();
+                card.setImageNum(randomNumber + 1);
+                generatedCardsArray[2 * i + 1] = card;
+
+                numberOfCardsForEachType[randomNumber]++;
+                i++;
+            }
         }
 
-        // TODO: Randomize the array
+        randomizeArray();
 
-        // Return the array
-        return generated_cards_array;
+        return generatedCardsArray;
     }
+
+    // Change the order of cards to make the game interesting
+    private void randomizeArray() {
+        Card temp;
+        for(int i = 0; i < MenuCards.numOfCardPairs * 2; i++) {
+            int random_number = rand.nextInt(MenuCards.numOfCardPairs * 2);
+            temp = generatedCardsArray[i];
+            generatedCardsArray[i] = generatedCardsArray[random_number];
+            generatedCardsArray[random_number] = temp;
+        }
+    }
+
 }
