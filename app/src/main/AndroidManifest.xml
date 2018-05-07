@@ -9,21 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuCards"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".MenuCards"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
-        <activity android:name=".CardGame.GameCards"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".SettingsCards"
-            android:screenOrientation="landscape">
-        </activity>
+        <activity
+            android:name=".CardGame.GameCards"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".SettingsCards"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".SetCards"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".SetBack"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

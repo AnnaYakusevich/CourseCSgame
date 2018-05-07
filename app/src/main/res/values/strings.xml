@@ -5,4 +5,10 @@
     <string name="card_game_settings">Настройки</string>
     <string name="card_game_exit">Назад</string>
     <string name="time_remaining">Time remaining: 10s</string>
+    <string name="text_cards_number">Количество карт: 16</string>
+    <string name="todo">TODO</string>
+    <string name="choose_back">Выбрать рубашку</string>
+    <string name="choose_front">Выбрать карты</string>
+    <string name="Save">Готово</string>
+    <string name="Save_cards">Сохранить</string>
 </resources>

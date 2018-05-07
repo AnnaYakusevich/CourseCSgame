@@ -25,6 +25,7 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
     private Button[] buttons = new Button[MenuCards.numOfCardPairs * 2];
     private int firstFlipped = -1;
     private CountDownTimerPausable timer;
+    TableLayout tableLayout;
 
     private enum SoundEffect {
         flip, shuffle, match, nomatch, won, lost
@@ -70,7 +71,9 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
 
         // Get generated cards
         arrayOfCards = model.getCards();
+
         displayCards();
+
 
         // Create timer and display it
         final TextView timeText = findViewById(R.id.time_remaining);
@@ -95,7 +98,7 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
     private void displayCards() {
 
         // Find TableLayout to work with it
-        TableLayout tableLayout = findViewById(R.id.table_layout_cards);
+        tableLayout = findViewById(R.id.table_layout_cards);
 
         int currentNumberOfRow = 0;
         int numOfCards = MenuCards.numOfCardPairs * 2;
@@ -120,15 +123,15 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
                 Button button = new Button(this);
                 button.setId(currentNumberOfRow * 4 + i - 1);
                 LayoutParams params1 = new TableRow.LayoutParams(0, 650, 0.22f);
-                button.setBackgroundResource(R.drawable.back);
+                button.setBackgroundResource(MenuCards.backId);
                 button.setText("");
                 button.setLayoutParams(params1);
 
                 // Add button to the array of all buttons and to the TableRow
                 buttons[currentNumberOfRow * 4 + i - 1] = button;
                 buttons[currentNumberOfRow * 4 + i - 1].setOnClickListener(this);
-                tableRow.addView(buttons[numOfCards * 4 + i - 1]);
-
+                tableRow.addView(buttons[currentNumberOfRow * 4 + i - 1]);
+                System.out.println("Log: Generating cards");
                 // Add to TableRow additional TextView to separate buttons from each other
                 if (i != 4) {
                     TextView separator = new TextView(this);
@@ -228,7 +231,7 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
         playSound(SoundEffect.flip);
     }
     private void flipBack(int i) {
-        buttons[i].setBackgroundResource(R.drawable.back);
+        buttons[i].setBackgroundResource(MenuCards.backId);
         arrayOfCards[i].setFlipped(false);
         playSound(SoundEffect.flip);
     }
@@ -376,8 +379,8 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
                 return;
         }
 
-        MediaPlayer ring = MediaPlayer.create(this, sound_id);
-        ring.start();
+        //MediaPlayer ring = MediaPlayer.create(this, sound_id);
+        //ring.start();
 
     }
 

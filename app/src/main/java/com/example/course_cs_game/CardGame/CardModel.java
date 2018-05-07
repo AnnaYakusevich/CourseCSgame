@@ -11,7 +11,7 @@ public class CardModel {
     // Prepare array for work
     private int[] numberOfCardsForEachType = new int[MenuCards.numOfCardTypes];
     private void makeArrayOfZeros() {
-        for(int j = 0; j < 13; j++) {
+        for(int j = 0; j < MenuCards.numOfCardTypes; j++) {
             numberOfCardsForEachType[j] = 0;
         }
     }
@@ -28,11 +28,12 @@ public class CardModel {
         int i = 0;
         while (i < MenuCards.numOfCardPairs) {
 
-            int randomNumber = rand.nextInt(13);
-
+            int randomNumber = rand.nextInt(MenuCards.numOfCardTypes);
+            if (MenuCards.enabledCards[randomNumber] == 0) continue;
+            System.out.println("Log: Pairs of cards " + randomNumber);
             // Making sure that cards are different
             int maxNumOfOneTypeCards = MenuCards.numOfCardPairs / 13;
-            if (MenuCards.numOfCardPairs % 13 != 0) {
+            if (MenuCards.numOfCardPairs % MenuCards.numOfCardTypes != 0) {
                 maxNumOfOneTypeCards++;
             }
             if (numberOfCardsForEachType[randomNumber] < maxNumOfOneTypeCards) {
