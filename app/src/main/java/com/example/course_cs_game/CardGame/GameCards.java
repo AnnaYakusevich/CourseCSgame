@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.view.ViewGroup.LayoutParams;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.os.Handler;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.view.View;
 
 import com.example.course_cs_game.MenuCards;
 import com.example.course_cs_game.R;
@@ -22,7 +25,7 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
     private long timeRemaining = MenuCards.timeForGame;
     private CardModel model = new CardModel();
     private Card[] arrayOfCards;
-    private Button[] buttons = new Button[MenuCards.numOfCardPairs * 2];
+    private ImageView[] buttons = new ImageView[MenuCards.numOfCardPairs * 2];
     private int firstFlipped = -1;
     private CountDownTimerPausable timer;
     TableLayout tableLayout;
@@ -103,9 +106,9 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
 
             // Create a tableRow
             TableRow tableRow = new TableRow(this);
-            TableLayout.LayoutParams params = new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, 670, 1);
-            params.setMargins(5, 0, 5, 10);
-            params.bottomMargin = 50;
+            TableLayout.LayoutParams params = new TableLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1);
+            params.setMargins(5, 5, 5, 0);
+            params.bottomMargin = 20;
             tableRow.setLayoutParams(params);
             tableRow.setWeightSum(1);
 
@@ -116,12 +119,13 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
                 if (numOfCards == 0) { break; }
 
                 // Create a button object with default parameters
-                Button button = new Button(this);
+                ImageView button = new ImageView(this);
                 button.setId(currentNumberOfRow * 4 + i - 1);
-                LayoutParams params1 = new TableRow.LayoutParams(0, 650, 0.22f);
-                button.setBackgroundResource(MenuCards.backId);
-                button.setText("");
+                LayoutParams params1 = new TableRow.LayoutParams(0, (int) (MenuCards.screenWidth / 2.7), 0.22f);
+                button.setScaleType(ImageView.ScaleType.FIT_XY);
+                button.setImageResource(R.drawable.back);
                 button.setLayoutParams(params1);
+
 
                 // Add button to the array of all buttons and to the TableRow
                 buttons[currentNumberOfRow * 4 + i - 1] = button;
@@ -131,7 +135,7 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
                 // Add to TableRow additional TextView to separate buttons from each other
                 if (i != 4) {
                     TextView separator = new TextView(this);
-                    separator.setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.MATCH_PARENT, 0.03f));
+                    separator.setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 0.03f));
                     tableRow.addView(separator);
                 }
                 numOfCards--;
@@ -184,49 +188,49 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
     private void flip(int i) {
         switch (arrayOfCards[i].getImageNum()) {
             case 1:
-                buttons[i].setBackgroundResource(R.drawable.card1);
+                buttons[i].setImageResource(R.drawable.card1);
                 break;
             case 2:
-                buttons[i].setBackgroundResource(R.drawable.card2);
+                buttons[i].setImageResource(R.drawable.card2);
                 break;
             case 3:
-                buttons[i].setBackgroundResource(R.drawable.card3);
+                buttons[i].setImageResource(R.drawable.card3);
                 break;
             case 4:
-                buttons[i].setBackgroundResource(R.drawable.card4);
+                buttons[i].setImageResource(R.drawable.card4);
                 break;
             case 5:
-                buttons[i].setBackgroundResource(R.drawable.card5);
+                buttons[i].setImageResource(R.drawable.card5);
                 break;
             case 6:
-                buttons[i].setBackgroundResource(R.drawable.card6);
+                buttons[i].setImageResource(R.drawable.card6);
                 break;
             case 7:
-                buttons[i].setBackgroundResource(R.drawable.card7);
+                buttons[i].setImageResource(R.drawable.card7);
                 break;
             case 8:
-                buttons[i].setBackgroundResource(R.drawable.card8);
+                buttons[i].setImageResource(R.drawable.card8);
                 break;
             case 9:
-                buttons[i].setBackgroundResource(R.drawable.card9);
+                buttons[i].setImageResource(R.drawable.card9);
                 break;
             case 10:
-                buttons[i].setBackgroundResource(R.drawable.card10);
+                buttons[i].setImageResource(R.drawable.card10);
                 break;
             case 11:
-                buttons[i].setBackgroundResource(R.drawable.card11);
+                buttons[i].setImageResource(R.drawable.card11);
                 break;
             case 12:
-                buttons[i].setBackgroundResource(R.drawable.card12);
+                buttons[i].setImageResource(R.drawable.card12);
                 break;
             case 13:
-                buttons[i].setBackgroundResource(R.drawable.card13);
+                buttons[i].setImageResource(R.drawable.card13);
                 break;
         }
         arrayOfCards[i].setFlipped(true);
     }
     private void flipBack(int i) {
-        buttons[i].setBackgroundResource(MenuCards.backId);
+        buttons[i].setImageResource(MenuCards.backId);
         arrayOfCards[i].setFlipped(false);
     }
     public void remove(int i) {
@@ -257,6 +261,7 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
         checkGameEnded();
     }
 
+    // TODO: Change text
     // Determine whether game ended or not
     public void checkGameEnded() {
 
@@ -293,11 +298,10 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
         }
 
         // Show won/lost message
-        // TODO: Change the style
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title)
                 .setMessage(message)
-                .setIcon(R.drawable.icon)
+                .setIcon(R.mipmap.icon)
                 .setCancelable(false)
                 .setNegativeButton("Закрыть",
                         new DialogInterface.OnClickListener() {

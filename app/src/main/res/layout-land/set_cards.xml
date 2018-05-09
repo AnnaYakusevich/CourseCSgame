@@ -9,15 +9,21 @@
 
     <Button
         android:id="@+id/save_cards"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:accessibilityLiveRegion="assertive"
         android:text="@string/Save_cards"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/save_cards">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,8 +38,8 @@
 
                 <CheckBox
                     android:id="@+id/checkBox1"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_weight="1"
@@ -42,16 +48,19 @@
 
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/card1" />
 
                 <CheckBox
                     android:id="@+id/checkBox2"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:checked="true"
@@ -60,8 +69,9 @@
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card2" />
@@ -75,8 +85,8 @@
 
                 <CheckBox
                     android:id="@+id/checkBox3"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_weight="1"
@@ -85,16 +95,18 @@
 
                 <ImageView
                     android:id="@+id/ImageView3"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card3" />
 
                 <CheckBox
                     android:id="@+id/checkBox4"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:checked="true"
@@ -103,8 +115,9 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card4" />
@@ -118,8 +131,8 @@
 
                 <CheckBox
                     android:id="@+id/checkBox5"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_weight="1"
@@ -128,16 +141,18 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card5" />
 
                 <CheckBox
                     android:id="@+id/checkBox6"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:checked="true"
@@ -146,8 +161,9 @@
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card6" />
@@ -161,8 +177,8 @@
 
                 <CheckBox
                     android:id="@+id/checkBox7"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_weight="1"
@@ -171,16 +187,18 @@
 
                 <ImageView
                     android:id="@+id/imageView7"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card7" />
 
                 <CheckBox
                     android:id="@+id/checkBox8"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:checked="true"
@@ -189,8 +207,9 @@
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card8" />
@@ -204,8 +223,8 @@
 
                 <CheckBox
                     android:id="@+id/checkBox9"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_weight="1"
@@ -214,16 +233,18 @@
 
                 <ImageView
                     android:id="@+id/imageView9"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card9" />
 
                 <CheckBox
                     android:id="@+id/checkBox10"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:checked="true"
@@ -232,8 +253,9 @@
 
                 <ImageView
                     android:id="@+id/imageView10"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card10" />
@@ -247,8 +269,8 @@
 
                 <CheckBox
                     android:id="@+id/checkBox11"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_weight="1"
@@ -257,16 +279,18 @@
 
                 <ImageView
                     android:id="@+id/imageView11"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card11" />
 
                 <CheckBox
                     android:id="@+id/checkBox12"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:checked="true"
@@ -275,8 +299,9 @@
 
                 <ImageView
                     android:id="@+id/imageView12"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card12" />
@@ -291,8 +316,8 @@
 
                 <CheckBox
                     android:id="@+id/checkBox13"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_weight="1"
@@ -301,16 +326,18 @@
 
                 <ImageView
                     android:id="@+id/imageView13"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     app:srcCompat="@drawable/card13" />
 
                 <CheckBox
                     android:id="@+id/checkBox14"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:checked="true"
@@ -321,8 +348,9 @@
 
                 <ImageView
                     android:id="@+id/imageView14"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="250dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/todo"
                     android:visibility="invisible"

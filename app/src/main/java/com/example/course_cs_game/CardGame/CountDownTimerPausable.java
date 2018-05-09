@@ -1,7 +1,7 @@
 package com.example.course_cs_game.CardGame;
 
 
-
+//TODO: Check comments
 
 import android.os.CountDownTimer;
 

@@ -17,12 +17,9 @@ public class SettingsCards extends AppCompatActivity implements OnClickListener,
 
     private TextView mTextView;
     private TextView mTextView2;
-    private Button cards;
-    private Button back;
-    private Button save;
-    private Button basicSettings;
     private SeekBar seekBar;
     private SeekBar seekBar2;
+    private String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +37,18 @@ public class SettingsCards extends AppCompatActivity implements OnClickListener,
         seekBar2.setProgress(MenuCards.timeForGame);
         seekBar2.setOnSeekBarChangeListener(this);
 
-
         mTextView = findViewById(R.id.textView);
-        mTextView.setText("Количество карт: 16");
+        text = "Количество карт: " + MenuCards.numOfCardPairs * 2;
+        mTextView.setText(text);
 
         mTextView2 = findViewById(R.id.textView2);
-        mTextView2.setText("Время на решение (секунды): 100");
+        text = "Время на решение (секунды): " + MenuCards.timeForGame;
+        mTextView2.setText(text);
+
+        Button cards;
+        Button back;
+        Button save;
+        Button basicSettings;
 
         cards = findViewById(R.id.button2);
         back = findViewById(R.id.button);
@@ -61,10 +64,12 @@ public class SettingsCards extends AppCompatActivity implements OnClickListener,
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (seekBar.getId() == R.id.seekBar) {
-            mTextView.setText("Количество карт: " + progress*2);
+            text = "Количество карт: " + progress*2;
+            mTextView.setText(text);
         }
         else {
-            mTextView2.setText("Время на решение (секунды): " + progress / 1000);
+            text = "Время на решение (секунды): " + progress / 1000;
+            mTextView2.setText(text);
         }
     }
 
@@ -103,6 +108,8 @@ public class SettingsCards extends AppCompatActivity implements OnClickListener,
         }
     }
 
+
+    //TODO: Check levels
     private void modeMenu() {
         final CharSequence[] items = {"Легкий","Средний","Сложный"};//имена методов Ваших в списке
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

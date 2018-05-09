@@ -49,6 +49,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
+                                                <entry key="paddingPercent" value="15" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -61,9 +62,8 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
-                                      <entry key="iconShape" value="HRECT" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Desktop/titleImage.png" />
-                                      <entry key="outputName" value="title_image" />
+                                      <entry key="imageAsset" value="$PROJECT_DIR$/app/src/main/res/drawable/icon.png" />
+                                      <entry key="outputName" value="icon" />
                                     </map>
                                   </option>
                                 </PersistentState>
