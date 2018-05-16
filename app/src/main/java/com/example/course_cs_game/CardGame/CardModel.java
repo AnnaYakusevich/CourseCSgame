@@ -1,28 +1,26 @@
 package com.example.course_cs_game.CardGame;
 
 import com.example.course_cs_game.MenuCards;
-
 import java.util.Random;
 
 public class CardModel {
 
     private Random rand = new Random();
 
-    // Prepare array for work
-    private int[] numberOfCardsForEachType = new int[MenuCards.numOfCardTypes];
-    private void makeArrayOfZeros() {
+    /**
+     * In this method array of cards for game is made
+     *
+     * @return generatedCardsArray
+     */
+    protected Card[] getCards() {
+
+        // The array for generated cards
+        Card[] generatedCardsArray = new Card[2 * MenuCards.numOfCardPairs];
+
+        int[] numberOfCardsForEachType = new int[MenuCards.numOfCardTypes];
         for(int j = 0; j < MenuCards.numOfCardTypes; j++) {
             numberOfCardsForEachType[j] = 0;
         }
-    }
-
-    // The array for generated cards
-    private Card[] generatedCardsArray = new Card[2 * MenuCards.numOfCardPairs];
-
-    // Make and return an array of cards for game
-    protected Card[] getCards() {
-
-        makeArrayOfZeros();
 
         // Randomly generate numOfCardPairs pairs of cards
         int i = 0;
@@ -36,7 +34,7 @@ public class CardModel {
             if (MenuCards.enabledCards[randomNumber] == 0) continue;
             System.out.println("Log: Pairs of cards " + randomNumber);
 
-            // Making sure that cards are different
+            // Make sure that cards are different
             if (numberOfCardsForEachType[randomNumber] < maxNumOfOneTypeCards) {
 
                 // First card object
@@ -54,13 +52,17 @@ public class CardModel {
             }
         }
 
-        randomizeArray();
+        randomizeArray(generatedCardsArray);
 
         return generatedCardsArray;
     }
 
-    // Change the order of cards to make the game interesting
-    private void randomizeArray() {
+    /**
+     * This method changes the order of cards in array to make the game interesting
+     *
+     * @param generatedCardsArray array to randomize
+     */
+    private void randomizeArray(Card[] generatedCardsArray) {
         Card temp;
         for(int i = 0; i < MenuCards.numOfCardPairs * 2; i++) {
             int random_number = rand.nextInt(MenuCards.numOfCardPairs * 2);

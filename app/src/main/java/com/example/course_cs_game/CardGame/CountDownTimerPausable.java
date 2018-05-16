@@ -1,34 +1,29 @@
 package com.example.course_cs_game.CardGame;
 
-
-//TODO: Check comments
-
 import android.os.CountDownTimer;
 
 /**
  * This class uses the native CountDownTimer to
  * create a timer which could be paused and then
- * started again from the previous point. You can
- * provide implementation for onTick() and onFinish()
- * then use it in your projects.
+ * started again from the previous point
+ * It is necessary for pausing timer when activity
+ * isn't in focus
  */
 
 public abstract class CountDownTimerPausable {
 
-    private long millisInFuture;
-    private long countDownInterval;
-    private long millisRemaining;
-
     private CountDownTimer countDownTimer = null;
 
+    private long countDownInterval;
+    private long millisRemaining;
     private boolean isPaused = true;
 
-    protected CountDownTimerPausable(long millisInFuture, long countDownInterval) {
+    CountDownTimerPausable(long millisRemaining, long countDownInterval) {
         super();
-        this.millisInFuture = millisInFuture;
         this.countDownInterval = countDownInterval;
-        this.millisRemaining = this.millisInFuture;
+        this.millisRemaining = millisRemaining;
     }
+
     private void createCountDownTimer(){
         countDownTimer = new CountDownTimer(millisRemaining,countDownInterval) {
 
@@ -36,26 +31,27 @@ public abstract class CountDownTimerPausable {
             public void onTick(long millisUntilFinished) {
                 millisRemaining = millisUntilFinished;
                 CountDownTimerPausable.this.onTick(millisUntilFinished);
-
             }
 
             @Override
             public void onFinish() {
                 CountDownTimerPausable.this.onFinish();
-
             }
         };
     }
+
     /**
-     * Callback fired on regular interval.
+     * Is called on regular interval and saves the current state of the timer
      *
-     * @param millisUntilFinished The amount of time until finished.
+     * @param millisUntilFinished the amount of time until finished
      */
     public abstract void onTick(long millisUntilFinished);
+
     /**
-     * Callback fired when the time is up.
+     * Method called when the time is up
      */
     public abstract void onFinish();
+
     /**
      * Cancel the countdown.
      */
@@ -65,30 +61,29 @@ public abstract class CountDownTimerPausable {
         }
         this.millisRemaining = 0;
     }
+
     /**
-     * Start or Resume the countdown.
+     * Start or Resume the countdown
+     *
      * @return CountDownTimerPausable current instance
      */
-    public synchronized final CountDownTimerPausable start(){
-        if(isPaused){
+    public synchronized final CountDownTimerPausable start() {
+        if (isPaused) {
             createCountDownTimer();
             countDownTimer.start();
             isPaused = false;
         }
         return this;
     }
+
     /**
      * Pauses the CountDownTimerPausable, so it could be resumed(start)
-     * later from the same point where it was paused.
+     * later from the same point where it was paused
      */
-    public void pause()throws IllegalStateException{
+    public void pause() throws IllegalStateException {
         if(!isPaused) {
             countDownTimer.cancel();
         }
-
         isPaused = true;
-    }
-    public boolean isPaused() {
-        return isPaused;
     }
 }

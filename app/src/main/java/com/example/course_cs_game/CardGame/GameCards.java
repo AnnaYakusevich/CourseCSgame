@@ -1,12 +1,8 @@
 package com.example.course_cs_game.CardGame;
 
-import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.content.Intent;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -15,7 +11,6 @@ import android.widget.TextView;
 import android.os.Handler;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.view.View;
 
 import com.example.course_cs_game.MenuCards;
 import com.example.course_cs_game.R;
@@ -28,16 +23,10 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
     private ImageView[] buttons = new ImageView[MenuCards.numOfCardPairs * 2];
     private int firstFlipped = -1;
     private CountDownTimerPausable timer;
-    TableLayout tableLayout;
 
-    // Overriding the reaction of Back button
-    @Override
-    public void onBackPressed() {
-        // super.onBackPressed();
-        super.onUserLeaveHint();
-    }
-
-    // Overriding basic methods of activity state
+    /**
+     * Overriding basic methods of activity state
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -67,20 +56,33 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.card_game);
 
+        startGame();
+
+    }
+
+    /**
+     * Start the game, create the timer
+     */
+    private void startGame() {
         // Get generated cards
         arrayOfCards = model.getCards();
 
         displayCards();
 
-
         // Create timer and display it
         final TextView timeText = findViewById(R.id.time_remaining);
         int timeForGame = MenuCards.timeForGame;
-        timer = new CountDownTimerPausable(timeForGame, 1000) {
+        timer = new CountDownTimerPausable(timeForGame, 10) {
 
             public void onTick(long millisUntilFinished) {
                 timeRemaining = millisUntilFinished;
-                String time = "Time remaining: " + timeRemaining / 1000 + "." + timeRemaining % 1000 / 10 + " s";
+                String time = "Time remaining: " + timeRemaining / 1000 + ".";
+                if (timeRemaining % 1000 / 10 < 10) {
+                    time += "0" + timeRemaining % 1000 / 10 + " s";
+                }
+                else {
+                    time += timeRemaining % 1000 / 10 + " s";
+                }
                 timeText.setText(time);
             }
 
@@ -94,10 +96,14 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
         timer.start();
     }
 
+    /**
+     * In this method all buttons are created and added to the screen
+     */
     private void displayCards() {
 
         // Find TableLayout to work with it
-        tableLayout = findViewById(R.id.table_layout_cards);
+        TableLayout tableLayout = findViewById(R.id.table_layout_cards);
+        tableLayout.removeAllViewsInLayout();
 
         int currentNumberOfRow = 0;
         int numOfCards = MenuCards.numOfCardPairs * 2;
@@ -113,29 +119,29 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
             tableRow.setWeightSum(1);
 
             // Add buttons to TableRow (max four in each line)
-            for (int i = 1; i <= 4; i++) {
+            for (int i = 1; i <= MenuCards.numOfCardsInRow; i++) {
 
                 // If all cards already exist, end adding
                 if (numOfCards == 0) { break; }
 
                 // Create a button object with default parameters
                 ImageView button = new ImageView(this);
-                button.setId(currentNumberOfRow * 4 + i - 1);
-                LayoutParams params1 = new TableRow.LayoutParams(0, (int) (MenuCards.screenWidth / 2.7), 0.22f);
+                button.setId(currentNumberOfRow * MenuCards.numOfCardsInRow + i - 1);
+                LayoutParams params1 = new TableRow.LayoutParams(0, (int) ((MenuCards.screenWidth
+                        / 2.7) * (4.0 / MenuCards.numOfCardsInRow)), 22f / (25 * MenuCards.numOfCardsInRow - 3));
                 button.setScaleType(ImageView.ScaleType.FIT_XY);
-                button.setImageResource(R.drawable.back);
+                button.setImageResource(MenuCards.backId);
                 button.setLayoutParams(params1);
 
-
                 // Add button to the array of all buttons and to the TableRow
-                buttons[currentNumberOfRow * 4 + i - 1] = button;
-                buttons[currentNumberOfRow * 4 + i - 1].setOnClickListener(this);
-                tableRow.addView(buttons[currentNumberOfRow * 4 + i - 1]);
-                System.out.println("Log: Generating cards");
+                buttons[currentNumberOfRow * MenuCards.numOfCardsInRow + i - 1] = button;
+                buttons[currentNumberOfRow * MenuCards.numOfCardsInRow + i - 1].setOnClickListener(this);
+                tableRow.addView(buttons[currentNumberOfRow * MenuCards.numOfCardsInRow + i - 1]);
                 // Add to TableRow additional TextView to separate buttons from each other
-                if (i != 4) {
+                if (i != MenuCards.numOfCardsInRow) {
                     TextView separator = new TextView(this);
-                    separator.setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 0.03f));
+                    separator.setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT,
+                            3f / (25 * MenuCards.numOfCardsInRow - 3)));
                     tableRow.addView(separator);
                 }
                 numOfCards--;
@@ -147,7 +153,11 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    // Analyze a click and set reaction on click
+    /**
+     * Analyze a click and set reaction on click
+     *
+     * @param v current view when object was clicked
+     */
     public void onClick(View v) {
 
         // User can't select any cards when the time ended
@@ -183,8 +193,11 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    // TODO: Set animation
-    // Methods for working with buttons
+    /**
+     * Show the picture of the card if clicked
+     *
+     * @param i - id if the clicked card
+     */
     private void flip(int i) {
         switch (arrayOfCards[i].getImageNum()) {
             case 1:
@@ -229,15 +242,31 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
         }
         arrayOfCards[i].setFlipped(true);
     }
+
+    /**
+     * Show the back of the card if clicked twice
+     *
+     * @param i - id if the clicked card
+     */
     private void flipBack(int i) {
         buttons[i].setImageResource(MenuCards.backId);
         arrayOfCards[i].setFlipped(false);
     }
+
+    /**
+     * Makes card invisible (called if two card matches)
+     *
+     * @param i - id if the card
+     */
     public void remove(int i) {
         buttons[i].setVisibility(View.INVISIBLE);
     }
 
-    // Game logic methods
+    /**
+     * Checks whether two flipped cards are the same or not
+     *
+     * @param second_flipped - id if the card that was second clicked
+     */
     public void checkForMatches(int second_flipped) {
 
         if (arrayOfCards[firstFlipped].getImageNum() == arrayOfCards[second_flipped].getImageNum()) {
@@ -249,6 +278,8 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
             remove(firstFlipped);
             remove(second_flipped);
 
+            // Check if all cards are matched
+            checkGameEnded();
         }
         else {
 
@@ -257,12 +288,12 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
             flipBack(second_flipped);
         }
 
-        // Check if all cards are matched
-        checkGameEnded();
     }
 
-    // TODO: Change text
-    // Determine whether game ended or not
+    /**
+     * Determine whether game ended or not
+     * Called when
+     */
     public void checkGameEnded() {
 
         // Messaging variables
@@ -285,7 +316,7 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
             }
 
             title = "Поздравляем!";
-            message = "Вы выиграли!";
+            message = "Вы готовы к сессии!";
 
         }
         else {
@@ -294,7 +325,7 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
                 return;
             }
             title = "Игра окончена!";
-            message = "Вы проиграли!";
+            message = "Удачи на пересдаче!";
         }
 
         // Show won/lost message
@@ -319,25 +350,18 @@ public class GameCards extends AppCompatActivity implements View.OnClickListener
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
-                                new_game();
+                                startGame();
                             }
                         });
         AlertDialog alert = builder.create();
         alert.show();
     }
 
-    // Go to the main menu
+    /**
+     * This method destroys the current activity and return user to the main menu
+     */
     public void end_of_game() {
-        Intent intent = new Intent(this, MenuCards.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
-
-    // Start new game
-    public void new_game() {
-        Intent intent = new Intent(this, GameCards.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        finish();
     }
 
 }

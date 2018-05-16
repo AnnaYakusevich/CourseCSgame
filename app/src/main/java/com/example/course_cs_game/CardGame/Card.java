@@ -2,15 +2,15 @@ package com.example.course_cs_game.CardGame;
 
 /**
  * This class represents the model of a single card
- * and contains its main properties
+ * and contains its main properties: current state
+ * and the number of image of the card
  */
-
 
 public class Card {
 
     private int imageNum = 0;
-    protected Boolean isFlipped = false;
-    protected Boolean isMatched = false;
+    private Boolean isFlipped = false;
+    private Boolean isMatched = false;
 
     public void setImageNum(int imageNum) {
         this.imageNum = imageNum;
